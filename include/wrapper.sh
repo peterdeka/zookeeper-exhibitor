@@ -4,6 +4,7 @@
 
 MISSING_VAR_MESSAGE="must be set"
 DEFAULT_AWS_REGION="us-west-2"
+#`curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone | sed -e 's:\([0-9][0-9]*\)[a-z]*\$:\\1:'`
 DEFAULT_DATA_DIR="/opt/zookeeper/snapshots"
 DEFAULT_LOG_DIR="/opt/zookeeper/transactions"
 DEFAULT_ZK_ENSEMBLE_SIZE=0
