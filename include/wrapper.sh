@@ -91,7 +91,7 @@ exec 2>&1
 # 	--s3region us-west-2 --s3backup true
 
 java -jar /opt/exhibitor/exhibitor.jar \
-  --port 8181 --defaultconfig /opt/exhibitor/defaults.conf \
+  --port ${EXHIBITOR_PORT:-8181} --defaultconfig /opt/exhibitor/defaults.conf \
   ${BACKUP_CONFIG} \
   ${HTTP_PROXY} \
   --hostname ${HOSTNAME} \
