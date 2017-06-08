@@ -24,6 +24,7 @@ The container expects the following environment variables to be passed in:
 * `HTTP_PROXY_PORT` - (optional) HTTP Proxy port
 * `HTTP_PROXY_USERNAME` - (optional) HTTP Proxy username
 * `HTTP_PROXY_PASSWORD` - (optional) HTTP Proxy password
+* `EXHIBITOR_PORT` - (optional) HTTP Port for Exhibitor (default is 8181)
 
 Starting the container:
 
