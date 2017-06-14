@@ -21,6 +21,7 @@ HTTP_PROXY=""
 : ${HTTP_PROXY_USERNAME:=""}
 : ${HTTP_PROXY_PASSWORD:=""}
 : ${OBSERVER_THRESHOLD:=$DEFAULT_OBSERVER_THRESHOLD}
+: ${EXHIBITOR_PORT:=8181}
 
 cat <<- EOF > /opt/exhibitor/defaults.conf
 	zookeeper-data-directory=$ZK_DATA_DIR
@@ -91,7 +92,7 @@ exec 2>&1
 # 	--s3region us-west-2 --s3backup true
 
 java -jar /opt/exhibitor/exhibitor.jar \
-  --port ${EXHIBITOR_PORT:-8181} --defaultconfig /opt/exhibitor/defaults.conf \
+  --port ${EXHIBITOR_PORT} --defaultconfig /opt/exhibitor/defaults.conf \
   ${BACKUP_CONFIG} \
   ${HTTP_PROXY} \
   --hostname ${HOSTNAME} \
