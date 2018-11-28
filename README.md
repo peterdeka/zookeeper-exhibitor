@@ -5,8 +5,8 @@ Available on the Docker Index as [djenriquez/zookeeper-exhibitor](https://index.
     docker pull djenriquez/zookeeper-exhibitor
 
 ### Versions
-* Exhibitor 1.5.5
-* ZooKeeper 3.4.9
+* Exhibitor 1.6.0
+* ZooKeeper 3.4.13
 
 ### Usage
 The container expects the following environment variables to be passed in:
@@ -93,3 +93,11 @@ Starting the container:
         -e S3_PREFIX=<key_prefix> \
         -e HOSTNAME=<host> \
         djenriquez/zookeeper-exhibitor:latest
+
+### Updating Versions
+#### Debian
+Update the base image to a released debian image. Verify the build succeeds. Update parts as necessary.
+#### ZooKeeper
+In the Dockerfile, update the ENV `ZK_VERSION` value to a _released_ ZK version.
+#### Exhibitor
+In the Dockerfile, fetch the `pom.xml` located in [soabase/exhibitor here](https://github.com/soabase/exhibitor/blob/master/exhibitor-standalone/src/main/resources/buildscripts/standalone/maven/pom.xml). Ensure you use the link associated with the commit, and not with the branch to gaurantee version lock.
