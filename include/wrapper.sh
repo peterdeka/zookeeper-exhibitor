@@ -43,6 +43,19 @@ cat <<- EOF > /opt/exhibitor/defaults.conf
 	auto-manage-instances-fixed-ensemble-size=$ZK_ENSEMBLE_SIZE
 EOF
 
+if [[ -n "$HOSTNAME_COMMAND" ]]; then
+    HOSTNAME_VALUE=$(eval "$HOSTNAME_COMMAND")
+    # Replace any occurences of _{HOSTNAME_COMMAND} with the value
+    for VAR in $(env); do
+        env_var=$(echo "$VAR" | cut -d= -f1)
+        value=$(eval echo \$$env_var)
+        if echo $value | grep -E ".*_\{HOSTNAME_COMMAND\}.*" > /dev/null; then
+					echo "REPLACE"
+				  eval "export ${VAR//_\{HOSTNAME_COMMAND\}/$HOSTNAME_VALUE}"
+					#HOSTNAME=${value//_\{HOSTNAME_COMMAND\}/$HOSTNAME_VALUE}
+        fi
+    done
+fi
 
 if [[ -n ${AWS_ACCESS_KEY_ID} ]]; then
   cat <<- EOF > /opt/exhibitor/credentials.properties

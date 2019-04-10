@@ -1,7 +1,7 @@
 FROM debian:9.6
 MAINTAINER DJ Enriquez <dj.enriquez@dreambox.com>
 
-ENV ZK_VERSION 3.4.13
+ENV ZK_VERSION 3.4.14
 ENV ZK_RELEASE http://www.apache.org/dist/zookeeper/zookeeper-${ZK_VERSION}/zookeeper-${ZK_VERSION}.tar.gz
 ENV EXHIBITOR_POM https://raw.githubusercontent.com/soabase/exhibitor/775bd4a67e1150b31238ad69da532b1b88376e86/exhibitor-standalone/src/main/resources/buildscripts/standalone/maven/pom.xml
 ENV DEBIAN_FRONTEND noninteractive
@@ -30,7 +30,7 @@ RUN \
     && curl -Lo /opt/exhibitor/pom.xml $EXHIBITOR_POM \
     && mvn -f /opt/exhibitor/pom.xml package \
     && ln -s /opt/exhibitor/target/exhibitor*jar /opt/exhibitor/exhibitor.jar
-    
+
 
 # Add the wrapper script to setup configs and exec exhibitor
 ADD include/wrapper.sh /opt/exhibitor/wrapper.sh
