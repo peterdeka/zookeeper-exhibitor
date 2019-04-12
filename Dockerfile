@@ -42,4 +42,6 @@ USER root
 WORKDIR /opt/exhibitor
 EXPOSE 2181 2888 3888 8181
 
+#HEALTHCHECK CMD curl -Ss http://127.0.0.1:8181/exhibitor/v1/cluster/state 2>&1 | grep -e \"state\":3 || exit 1
+
 ENTRYPOINT ["bash", "-ex", "/opt/exhibitor/wrapper.sh"]
